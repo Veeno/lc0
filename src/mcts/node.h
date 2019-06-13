@@ -359,7 +359,7 @@ class EdgeAndNode {
   // Returns U = numerator * p / N.
   // Passed numerator is expected to be equal to (cpuct * sqrt(N[parent])).
   float GetU(float numerator) const {
-    return numerator * std::pow(GetP(), 1 / (1 + std::log(1 + GetNStarted() / 1000.0)))
+    return numerator * std::pow(GetP(), 1 / (1 + std::log(1 + GetNStarted() / 10.0)))
       / (1 + GetNStarted());
   }
 
