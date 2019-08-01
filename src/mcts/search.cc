@@ -955,11 +955,10 @@ SearchWorker::NodeToProcess SearchWorker::PickNodeToExtend(
         }
         ++possible_moves;
       }
-      const float U = std::round(295 * child.GetU(puct_mult) /
-                      (1 - 0.976953125 * std::pow(child.GetU(puct_mult), 14)));
-      const float Q = std::round(295 * child.GetQ(fpu) /
-                     (1 - 0.976953125 * std::pow(child.GetQ(fpu), 14)));
-      const float score = Q + U;      
+      const float Qp = node->GetQ();
+      const float Q = child.GetQ(fpu);
+      // 0.2146018366 = 1 - pi/4
+      const float score = child.GetU(puct_mult) * (0.2146018366 + sqrt(1-abs(Qp)^2)^(1/2)) + Q;
       if (score > best) {
         second_best = best;
         second_best_edge = best_edge;
