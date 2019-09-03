@@ -374,6 +374,10 @@ class EdgeAndNode {
                  1e9f));
   }
 
+  // Helpers to determine which terminals to prefer.
+  int GetMovesTillCheckmate() const;
+  int GetTerminalSortingKey() const;
+
   std::string DebugString() const;
 
  protected:
